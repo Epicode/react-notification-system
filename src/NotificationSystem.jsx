@@ -143,15 +143,16 @@ var NotificationSystem = createReactClass({
       }
     }
 
-    notifications.push(_notification);
+     notifications.push(_notification);
 
     this.setState({
       notifications: notifications
-    },()=>{
-      if (typeof _notification.onAdd === 'function') {
-      notification.onAdd(_notification);
+    }, function(){
+        if (typeof notification.onAdd === 'function') {
+            notification.onAdd(_notification);
+        }
     });
-      
+
     return _notification;
   },
 
