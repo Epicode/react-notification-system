@@ -291,33 +291,33 @@ var NotificationItem = createReactClass({
     }
 
     if (notification.title) {
-      title = <h4 className="notification-title" style={ this._styles.title }>{ notification.title }</h4>;
+      title = React.createElement("h4", {className: "notification-title", style:  this._styles.title},  notification.title);
     }
 
     if (notification.message) {
       if (this.props.allowHTML) {
         message = (
-          <div className="notification-message" style={ this._styles.messageWrapper } dangerouslySetInnerHTML={ this._allowHTML(notification.message) } />
+          React.createElement("div", {className: "notification-message", style:  this._styles.messageWrapper, dangerouslySetInnerHTML:  this._allowHTML(notification.message) })
         );
       } else {
         message = (
-          <div className="notification-message" style={ this._styles.messageWrapper }>{ notification.message }</div>
+          React.createElement("div", {className: "notification-message", style:  this._styles.messageWrapper},  notification.message)
         );
       }
     }
     if (notification.dismissible === 'both' || notification.dismissible === 'button' || notification.dismissible === true) {
-      dismiss = <span className="notification-dismiss" onClick={ this._dismiss } style={ this._styles.dismiss }>&times;</span>;
+      dismiss = React.createElement("span", {className: "notification-dismiss", onClick:  this._dismiss, style:  this._styles.dismiss}, "×");
     }
 
     if (notification.action) {
       actionButton = (
-        <div className="notification-action-wrapper" style={ this._styles.actionWrapper }>
-          <button className="notification-action-button"
-            onClick={ this._defaultAction }
-            style={ this._styles.action }>
-            { notification.action.label }
-          </button>
-        </div>
+        React.createElement("div", {className: "notification-action-wrapper", style:  this._styles.actionWrapper}, 
+          React.createElement("button", {className: "notification-action-button", 
+            onClick:  this._defaultAction, 
+            style:  this._styles.action}, 
+             notification.action.label
+          )
+        )
       );
     }
 
@@ -326,12 +326,12 @@ var NotificationItem = createReactClass({
     }
 
     return (
-      <div className={ className + ' ' + this.props.itemClassName } onClick={ this._handleNotificationClick } onMouseEnter={ this._handleMouseEnter } onMouseLeave={ this._handleMouseLeave } style={ notificationStyle }>
-        { title }
-        { message }
-        { dismiss }
-        { actionButton }
-      </div>
+      React.createElement("div", {className:  className + ' ' + this.props.itemClassName, onClick:  this._handleNotificationClick, onMouseEnter:  this._handleMouseEnter, onMouseLeave:  this._handleMouseLeave, style:  notificationStyle }, 
+         title, 
+         message, 
+         dismiss, 
+         actionButton 
+      )
     );
   },
 

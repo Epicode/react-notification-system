@@ -252,9 +252,9 @@ var NotificationSystem = createReactClass({
 
   _renderDefault: function(containers) {
     return (
-      <div className={ 'notifications-wrapper ' + this.props.systemClassName } style={ this._getStyles.wrapper() }>
-        { containers }
-      </div>
+      React.createElement("div", {className:  'notifications-wrapper ' + this.props.systemClassName, style:  this._getStyles.wrapper() }, 
+         containers 
+      )
     );
   },
 
@@ -274,20 +274,20 @@ var NotificationSystem = createReactClass({
         }
 
         return (
-          <NotificationContainer
-            ref={ 'container-' + position }
-            key={ position }
-            position={ position }
-            notifications={ _notifications }
-            getStyles={ self._getStyles }
-            onRemove={ self._didNotificationRemoved }
-            noAnimation={ self.props.noAnimation }
-            allowHTML={ self.props.allowHTML }
-            renderContainer={ self.props.renderContainer }
-            renderItem={ self.props.renderItem }
-            containerClassName={ self.props.containerClassName }
-            itemClassName={ self.props.itemClassName }
-          />
+          React.createElement(NotificationContainer, {
+            ref:  'container-' + position, 
+            key:  position, 
+            position:  position, 
+            notifications:  _notifications, 
+            getStyles:  self._getStyles, 
+            onRemove:  self._didNotificationRemoved, 
+            noAnimation:  self.props.noAnimation, 
+            allowHTML:  self.props.allowHTML, 
+            renderContainer:  self.props.renderContainer, 
+            renderItem:  self.props.renderItem, 
+            containerClassName:  self.props.containerClassName, 
+            itemClassName:  self.props.itemClassName}
+          )
         );
       });
     }
